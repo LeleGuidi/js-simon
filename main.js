@@ -73,7 +73,7 @@ check.addEventListener(`click`,
             messages.innerHTML = "";
             messages.style.display = "none"
 
-            //Si inserisce nell'array dell'utente il numero da lui indicato
+            //Si inserisce nell'array dell'utente il numero da lui indicato solo se non è già stato inserito precedentemente
             if (userChoice.includes(input.value)) {
                 input.value = ""
                 messages.style.display = "block"
