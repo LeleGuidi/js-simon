@@ -12,10 +12,22 @@ function checkNumbersBeforePush(array, number) {
     }
 }
 
+//Funzione countdown
+function clockFunction() {
+    clockBox.innerHTML = clock;
+    clockRow.append(clockBox)
+    if (clock == 0) {
+        clearInterval(countdown)
+        
+    }
+    clock -= 1
+}
 
 //MAIN
-const boxes = document.createElement("div");
-const row = document.getElementById("row");
+const numberBoxes = document.createElement("div");
+const numberRow = document.getElementById("number_row");
+const clockRow = document.getElementById("clock_row")
+const clockBox = document.getElementById("clock_box")
 
 //Prendere 5 numeri casuali
 let cpuNumbers = [];
@@ -24,10 +36,15 @@ while (cpuNumbers.length < 5) {
     checkNumbersBeforePush(cpuNumbers, cpuNumber);
 }
 
-boxes.classList.add("cpu_numbers")
+numberBoxes.classList.add("cpu_numbers")
+
 //Stampare a video i numeri casuali
 for (let i = 0; i < 5; i++) {
-    boxes.innerHTML = cpuNumbers[i]
-    row.append(boxes.cloneNode(true))
+    numberBoxes.innerHTML = cpuNumbers[i]
+    numberRow.append(numberBoxes.cloneNode(true))
 }
+
+//Avviare il countdown di 30 secondi stampando a video ogni secondo
+const countdown = setInterval(clockFunction, 1000)
+let clock = 3;
 

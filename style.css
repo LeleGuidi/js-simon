@@ -15,15 +15,24 @@ body{
     padding: 20px;
     margin: 150px auto;
 }
-#row {
+.row {
     width: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
 }
+.container .row:nth-child(2) {
+    margin: 20px 0;
+}
 .cpu_numbers{
     font-size: 40px;
     text-transform: uppercase;
     color: white;
+}
+#clock_box {
+    color: red;
+    font-size: 42px;
+    width: 100%;
+    text-align: center;
 }
