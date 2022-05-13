@@ -48,7 +48,7 @@ const countdown = setInterval(function() {
 
         //I div contenenti i numeri del computer vengono rimossi 
         const boxes = document.querySelectorAll(".cpu_numbers")
-        for (let i = 0; 0 < boxes.length; i++) {
+        for (let i = 0; i < boxes.length; i++) {
             boxes[i].remove();
         }
         
@@ -59,6 +59,7 @@ const countdown = setInterval(function() {
 //Al click del bottone il computer prenderà il numero inserito nella text area
 let userChoice = []
 let result = 0;
+let rightNumbers = "";
 check.addEventListener(`click`, 
     function(){
         const userNumber = Number(input.value)
@@ -66,7 +67,7 @@ check.addEventListener(`click`,
         if (isNaN(userNumber) || userNumber == "") {
             input.value = ""
             messages.style.display = "block"
-            messages.innerHTML = "Inserisci un numero"
+            messages.innerHTML = "Inserisci un numero 😤"
         } else {
             //Se è un numero verrà inserito nell'array dedicato ai numeri dell'utente
             //Piccola pulizia nel caso precedentemente l'utente abbia inserito un testo invece del numero
@@ -74,11 +75,12 @@ check.addEventListener(`click`,
             messages.style.display = "none"
 
             //Si inserisce nell'array dell'utente il numero da lui indicato solo se non è già stato inserito precedentemente
-            if (userChoice.includes(input.value)) {
+            if (userChoice.includes(Number(input.value))) {
                 input.value = ""
                 messages.style.display = "block"
-                messages.innerHTML = "Furbetto, non puoi inserire lo stesso numero più volte 😤"
+                messages.innerHTML = "Non puoi inserire lo stesso numero più volte 😤"
             } else {
+                //Il numero viene inserito nell'array
                 userChoice.push(Number(input.value))
                 //Il numero viene visualizzato nella riga dedicata
                 numberBoxes.innerHTML = input.value
@@ -93,12 +95,13 @@ check.addEventListener(`click`,
                 for (i = 0; i < 5; i++) {
                     if (cpuNumbers.includes(userChoice[i])) {
                         result = result + 1
+                        rightNumbers += ` ${String(userChoice[i])}`
                     }
                 }
                 //Se i numeri inseriti dall'utente sono 5 allora la sezione di input si blocca e si controllano i numeri inseriti
                 if (result != 0) {
                     messages.style.display = "block"
-                    messages.innerHTML = `Complimenti, hai beccato ${result} numero/i 😜`
+                    messages.innerHTML = `Complimenti, hai beccato ${result} numero/i: ${rightNumbers}😜`
 
                 } else {
                     messages.style.display = "block"
